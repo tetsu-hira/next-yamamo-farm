@@ -2,7 +2,22 @@ import type { NextPage } from 'next';
 import Head from 'next/head';
 import Image from 'next/image';
 import Link from 'next/link';
-import styles from '../styles/Home.module.css';
+import SwiperCore, { Pagination, Navigation, EffectCube, EffectCoverflow } from 'swiper'; //使いたい機能をインポート
+// eslint-disable-next-line import/no-unresolved
+import { Swiper, SwiperSlide } from 'swiper/react'; //カルーセル用のタグをインポート
+
+// import required modules
+
+SwiperCore.use([Pagination, Navigation]);
+
+const images = [
+  '/test_image1.jpg',
+  '/test_image2.jpg',
+  '/test_image3.jpg',
+  '/test_image4.jpg',
+  '/test_image5.jpg',
+  '/test_image6.jpg',
+];
 
 type Item = {
   title: string;
@@ -98,7 +113,7 @@ const Home: NextPage = () => {
             </a>
           </Link>
         </div>
-        <div className='mt-24 text-center mb-16'>
+        <div className='mt-24 text-center mb-16 min-w-max'>
           <p className='text-4xl font-bold'>今年度目標：銀賞の獲得</p>
           <p className='text-2xl font-bold leading-10 my-8 text-red-500'>
             獲得に向けてまずは現在の
@@ -113,7 +128,19 @@ const Home: NextPage = () => {
         </div>
         <div className='mt-8 pb-4 mx-auto'>
           {itemList.map((item: any, index: number) => (
-            <div className='flex bg-green-200 mt-16 p-6 w-fit mx-auto' key={item.title}>
+            <div className='flex bg-lime-100 mt-16 p-6 w-fit mx-auto shadow-beta' key={item.title}>
+              {index % 2 !== 0 && (
+                <ul className='text-center m-auto w-96'>
+                  <li key={index}>
+                    <p key={item.title} className='text-3xl pb-4 font-bold'>
+                      {item.title}
+                    </p>
+                    <p key={item.content} className='text-xl mr-6 text-left'>
+                      {item.content}
+                    </p>
+                  </li>
+                </ul>
+              )}
               <div className='min-w-max'>
                 <Image
                   src={'/main' + (index + 1) + '.jpg'}
@@ -122,16 +149,18 @@ const Home: NextPage = () => {
                   alt='メイン画像1'
                 />
               </div>
-              <ul className='text-center m-auto w-96'>
-                <li key={index}>
-                  <p key={item.title} className='text-3xl pb-4 font-bold'>
-                    {item.title}
-                  </p>
-                  <p key={item.content} className='text-xl ml-6'>
-                    {item.content}
-                  </p>
-                </li>
-              </ul>
+              {index % 2 === 0 && (
+                <ul className='text-center m-auto w-96'>
+                  <li key={index}>
+                    <p key={item.title} className='text-3xl pb-4 font-bold'>
+                      {item.title}
+                    </p>
+                    <p key={item.content} className='text-xl ml-6 text-left'>
+                      {item.content}
+                    </p>
+                  </li>
+                </ul>
+              )}
             </div>
           ))}
         </div>
@@ -141,6 +170,43 @@ const Home: NextPage = () => {
               今までの活動を見る
             </a>
           </Link>
+        </div>
+        <div className='mt-24 text-center mb-8 min-w-max'>
+          <p className='text-4xl font-bold'>金賞までの道のり</p>
+          <p className='text-xl leading-8 mt-8'>
+            生産管理グループは今まで5S活動を行ってこなかったため、
+            <br />
+            昨年度より長期的な最終目標として
+            <br />
+            金賞の獲得を掲げて活動を続けております。
+          </p>
+        </div>
+        <div className='w-1/2 m-auto mb-12'>
+          <Swiper
+            effect={'coverflow'}
+            grabCursor={true}
+            centeredSlides={true}
+            slidesPerView={1.6}
+            coverflowEffect={{
+              rotate: 50,
+              stretch: 0,
+              depth: 200,
+              modifier: 1,
+              slideShadows: true,
+            }}
+            pagination={true}
+            modules={[EffectCoverflow, Pagination]}
+            loop={true}
+            className=''
+          >
+            {images.map((src: string, index: number) => {
+              return (
+                <SwiperSlide key={`${index}`}>
+                  <Image src={src} layout='responsive' width={640} height={400} alt='test_image' />
+                </SwiperSlide>
+              );
+            })}
+          </Swiper>
         </div>
       </main>
     </>

@@ -4,9 +4,9 @@ import Link from 'next/link';
 export default function Footer() {
   return (
     <>
-      <footer className='my-20 mx-auto text-slate-800 w-auto font-body'>
-        <div className='flex m-auto mb-10'>
-          <div className='w-2/5 m-auto pl-10 block'>
+      <footer className='py-20 mx-auto text-slate-800 w-auto font-body bg-slate-50'>
+        <div className='flex m-auto'>
+          <div className='w-1/4 m-auto pl-10 block min-w-max'>
             <Link href='/'>
               <a className='text-4xl font-bold'>5S活動の記録</a>
             </Link>
@@ -34,7 +34,7 @@ export default function Footer() {
               </li>
             </ul>
           </div>
-          <div className='w-1/5 mt-0 mx-4 mb-auto'>
+          <div className='w-1/4 mt-0 mx-4 mb-auto'>
             <p className='font-bold text-xl mb-0'>リンク</p>
             <ul className='my-5 pl-0 flex w-auto flex-wrap'>
               <li className='my-2 font-light list-none w-1/2 text-base pl-4'>私たちについて</li>
@@ -47,13 +47,13 @@ export default function Footer() {
               <li className='my-2 font-light list-none w-1/2 text-base pl-4'>ブログ</li>
             </ul>
           </div>
-          <div className='w-1/5 mt-0 mx-4 mb-auto'>
+          <div className='w-1/4 mt-0 mx-4 mb-auto'>
             <p className='font-bold text-xl mb-0'>課題を見る</p>
             <ul className='mt-0.5 mb-5 pl-0 flex w-auto flex-wrap'>
               <li className='my-2 font-light list-none w-1/2 text-base pl-4'>コレクション</li>
             </ul>
           </div>
-          <div className='w-1/5 mt-0 mx-4 mb-auto'>
+          <div className='w-1/4 mt-0 mx-4 mb-auto'>
             <p className='font-bold text-xl mb-0'>ポリシー</p>
             <ul className='mt-0.5 mb-5 pl-0 flex w-auto flex-wrap'>
               <li className='my-2 font-light list-none w-1/2 text-base pl-4'>

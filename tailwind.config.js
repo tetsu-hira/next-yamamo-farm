@@ -4,7 +4,11 @@ module.exports = {
   purge: ['./src/pages/**/*.{js,ts,jsx,tsx}', './src/components/**/*.{js,ts,jsx,tsx}'],
   darkMode: false, // or 'media' or 'class'
   theme: {
-    extend: {},
+    extend: {
+      boxShadow: {
+        beta: '10px 10px #ccc',
+      },
+    },
     fontFamily: {
       body: [
         'Avenir',
