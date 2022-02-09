@@ -6,12 +6,15 @@ import 'tailwindcss/tailwind.css';
 import type { AppProps } from 'next/app';
 import Layout from '../components/layout';
 import 'swiper/css/bundle';
+import { AnimatePresence } from 'framer-motion';
 
-function MyApp({ Component, pageProps }: AppProps) {
+function MyApp({ Component, pageProps, router }: AppProps) {
   return (
-    <Layout>
-      <Component {...pageProps} />
-    </Layout>
+    <AnimatePresence>
+      <Layout>
+        <Component {...pageProps} key={router.route} />
+      </Layout>
+    </AnimatePresence>
   );
 }
 

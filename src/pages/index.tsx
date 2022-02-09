@@ -1,7 +1,10 @@
+import { useAnimation, motion } from 'framer-motion';
 import type { NextPage } from 'next';
 import Head from 'next/head';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useEffect } from 'react';
+import { useInView } from 'react-intersection-observer';
 import SwiperCore, { Pagination, Navigation, EffectCube, EffectCoverflow } from 'swiper'; //使いたい機能をインポート
 // eslint-disable-next-line import/no-unresolved
 import { Swiper, SwiperSlide } from 'swiper/react'; //カルーセル用のタグをインポート
@@ -43,6 +46,25 @@ const Home: NextPage = () => {
     },
   ];
 
+  const controls = useAnimation();
+  const [ref, inView] = useInView({
+    threshold: [0.7],
+    triggerOnce: true,
+  });
+
+  const variants = {
+    moved: { y: 0 },
+    initial: { y: -300 },
+  };
+  useEffect(() => {
+    if (inView) {
+      controls.start('moved');
+    } else {
+      controls.stop();
+      controls.set('initial');
+    }
+  }, [controls, inView]);
+
   return (
     <>
       <Head>
@@ -65,21 +87,28 @@ const Home: NextPage = () => {
             height={1944}
             alt='TOP image'
             priority={true}
-            className='w-full'
+            className='w-full z-10'
           />
         </div>
-        <div className='-mt-2'>
-          <div className='bg-pink-300 py-4 text-xl text-center shadow'>ー　新着情報　ー</div>
-          <div className='bg-pink-100 shadow-md pt-4 pb-4'>
+        <motion.div
+          ref={ref}
+          className='-mt-2'
+          initial='hidden'
+          animate={controls}
+          variants={variants}
+          transition={{ duration: 1.5 }}
+        >
+          <div className='bg-pink-100pt-4 pt-4'>
             <div className='text-pink-500 font-bold text-base'>21.12.11</div>
             <div className='text-xl ml-2 mb-3'>生産管理で5S会議を行いました</div>
             <div className='text-pink-500 font-bold text-base'>21.12.28</div>
             <div className='text-xl ml-2 mb-3'>大掃除の写真をUPしました</div>
             <Link href='/'>
-              <a className='mt-16 block ml-8'>▶　一覧はこちら</a>
+              <a className='mt-16 block ml-8 pb-4'>▶　一覧はこちら</a>
             </Link>
+            <div className='bg-pink-300 py-4 text-xl text-center  shadow-md '>ー　新着情報　ー</div>
           </div>
-        </div>
+        </motion.div>
         <div className='flex my-16 text-center justify-center'>
           <div className='min-w-max'>
             <Link href='/'>
@@ -207,6 +236,25 @@ const Home: NextPage = () => {
               );
             })}
           </Swiper>
+        </div>
+        <div className='mt-24 text-center min-w-max bg-gray-200 py-6'>
+          <p className='text-4xl font-bold'>最後に</p>
+          <p className='text-2xl leading-10 mt-8 font-bold'>「３年間で金賞を獲得する」</p>
+          <p className='text-xl mt-4'>
+            私たちは上記の目標に向けて日々活動を続けており、そのための通過点が銅賞、銀賞です。
+          </p>
+          <p className='pt-4 text-xl'>今まで行ってきた活動はそのための一歩です。</p>
+          <p className='pt-4 text-xl'>本サイトにてその軌跡をご確認ください。</p>
+        </div>
+        <div>
+          <Image
+            src='/fin.jpg'
+            width={2592}
+            height={1944}
+            alt='TOP image'
+            priority={true}
+            className='w-full'
+          />
         </div>
       </main>
     </>
