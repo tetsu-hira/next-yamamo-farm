@@ -2,69 +2,51 @@ import Link from 'next/link';
 import React, { useState } from 'react';
 
 export default function Hamburger(props: any) {
-  const [openMenu, setOpenMenu] = useState(false);
+  const [openMenu, setOpenMenu] = useState(true);
   const menuFunction = () => {
     setOpenMenu(!openMenu);
+    console.log(openMenu);
   };
+
+  const itemList: string[] = ['Shop', 'About', 'Blog', 'ログイン', '検索', '買い物かご'];
 
   return (
     <>
-      <div className={styles.container}>
-        <div className={styles.hamburger} onClick={() => menuFunction()}>
-          <span className={openMenu ? styles.open : undefined}></span>
-          <span className={openMenu ? styles.open : undefined}></span>
-          <p className={openMenu ? styles.open : undefined}>Menu</p>
+      <div
+        className={
+          openMenu
+            ? 'm-0 mb-auto sm:hidden fixed top-2.5 right-2.5 cursor-pointer duration-500'
+            : 'w-0 duration-500 h-0 opacity-0 -z-50'
+        }
+      >
+        <div className='block' onClick={() => menuFunction()}>
+          <span className={openMenu ? 'h-px bg-neutral-800 w-7 block mb-2 ml-2' : undefined}></span>
+          <span className={openMenu ? 'h-px bg-neutral-800 w-9 block' : undefined}></span>
+          <p className={openMenu ? 'opacity-100 z-50 text-sm text-right' : undefined}>Menu</p>
         </div>
       </div>
-      <div className={`${styles.drawerMenu} ${openMenu ? styles.open : undefined}`}>
-        <ul>
-          <div className={styles.close} onClick={() => menuFunction()}>
-            <span></span>
-            <span></span>
-            <p>Close</p>
+      <div
+        className={
+          openMenu
+            ? 'w-0 duration-500 h-0 opacity-0 -z-50'
+            : 'h-screen opacity-100 z-50 text-white bg-neutral-800 w-full top-0 duration-500'
+        }
+      >
+        <ul className='relative -mt-11 '>
+          <div className='cursor-pointer pr-3 pt-3' onClick={() => menuFunction()}>
+            <span className='absolute bg-white w-9 h-px block right-4 top-5 translate-y-1.5 rotate-150'></span>
+            <span className='absolute bg-white w-9 h-px block right-4 top-5 translate-y-1.5 -rotate-150'></span>
+            <p className='text-right text-sm pr-1 pt-6'>Close</p>
           </div>
-          <li>
-            <Link href='/'>
-              <a>
-                <p>Shop</p>
-              </a>
-            </Link>
-          </li>
-          <li>
-            <Link href='/'>
-              <a>
-                <p>About</p>
-              </a>
-            </Link>
-          </li>
-          <li>
-            <Link href='/'>
-              <a>
-                <p>Blog</p>
-              </a>
-            </Link>
-          </li>
-          <li>
-            <Link href='/'>
-              <a>
-                <p>ログイン</p>
-              </a>
-            </Link>
-          </li>
-          <li>
-            <Link href='/'>
-              <a>
-                <p>検索</p>
-              </a>
-            </Link>
-          </li>
-          <li>
-            <Link href='/'>
-              <a>
-                <p>買い物かご</p>
-              </a>
-            </Link>
-          </li>
+          {itemList.map((item, index) => (
+            <li key={item} className='list-disc ml-12 mt-6'>
+              <Link href='/'>
+                <a>
+                  <p>{item}</p>
+                </a>
+              </Link>
+            </li>
+          ))}
         </ul>
       </div>
     </>

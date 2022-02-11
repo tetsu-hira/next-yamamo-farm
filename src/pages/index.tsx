@@ -1,4 +1,4 @@
-import { useAnimation, motion } from 'framer-motion';
+import { useAnimation, motion, animate } from 'framer-motion';
 import type { NextPage } from 'next';
 import Head from 'next/head';
 import Image from 'next/image';
@@ -19,7 +19,6 @@ const images = [
   '/test_image3.jpg',
   '/test_image4.jpg',
   '/test_image5.jpg',
-  '/test_image6.jpg',
 ];
 
 type Item = {
@@ -48,7 +47,7 @@ const Home: NextPage = () => {
 
   const controls = useAnimation();
   const [ref, inView] = useInView({
-    threshold: [0.7],
+    threshold: [1],
     triggerOnce: true,
   });
 
@@ -65,6 +64,11 @@ const Home: NextPage = () => {
     }
   }, [controls, inView]);
 
+  const opacityVariants = {
+    moved: { opacity: 1 },
+    initial: { opacity: 0 },
+  };
+
   return (
     <>
       <Head>
@@ -80,15 +84,29 @@ const Home: NextPage = () => {
       </Head>
 
       <main>
-        <div>
+        <div className='relative'>
           <Image
             src='/top1.jpg'
             width={2592}
             height={1944}
             alt='TOP image'
             priority={true}
-            className='w-full z-10'
+            className='sm:w-full z-10'
           />
+          <motion.div
+            className='absolute bottom-4 z-30 left-10 text-white sm:min-w-max hidden sm:block'
+            initial={{ x: -1000 }}
+            animate={{ x: 0 }}
+            transition={{ duration: 2 }}
+          >
+            <p className='font-bold text-5xl leading-relaxed'>【生産管理の5S活動】</p>
+            <p className='font-bold text-5xl leading-relaxed'>
+              　日々の5S活動や年に一度のPC掃除など
+            </p>
+            <p className='font-bold text-5xl leading-relaxed'>
+              　金賞の獲得を目指して続けております
+            </p>
+          </motion.div>
         </div>
         <motion.div
           ref={ref}
@@ -96,9 +114,10 @@ const Home: NextPage = () => {
           initial='hidden'
           animate={controls}
           variants={variants}
-          transition={{ duration: 1.5 }}
+          transition={{ duration: 1 }}
         >
-          <div className='bg-pink-100pt-4 pt-4'>
+          <div className='bg-pink-300 py-4 text-xl text-center'>ー　新着情報　ー</div>
+          <div className='bg-pink-100 pt-4 shadow'>
             <div className='text-pink-500 font-bold text-base'>21.12.11</div>
             <div className='text-xl ml-2 mb-3'>生産管理で5S会議を行いました</div>
             <div className='text-pink-500 font-bold text-base'>21.12.28</div>
@@ -106,15 +125,20 @@ const Home: NextPage = () => {
             <Link href='/'>
               <a className='mt-16 block ml-8 pb-4'>▶　一覧はこちら</a>
             </Link>
-            <div className='bg-pink-300 py-4 text-xl text-center  shadow-md '>ー　新着情報　ー</div>
           </div>
         </motion.div>
-        <div className='flex my-16 text-center justify-center'>
-          <div className='min-w-max'>
+        <motion.div
+          className='flex my-16 text-center justify-center'
+          initial='hidden'
+          // animate={controls}
+          variants={opacityVariants}
+          transition={{ duration: 1 }}
+        >
+          <div className='sm:min-w-max'>
             <Link href='/'>
               <a>
                 <Image
-                  className='animate__animated animate__fadeIn'
+                  className='w-auto'
                   src='/5Scycle.png'
                   width={416}
                   height={400}
@@ -123,7 +147,7 @@ const Home: NextPage = () => {
               </a>
             </Link>
           </div>
-          <div className='my-auto text-center px-24 min-w-max'>
+          <div className='my-auto text-center pl-24 sm:min-w-max'>
             <p className='text-2xl'>生産管理の</p>
             <p className='text-5xl font-bold pb-8'>5S活動の歩み</p>
             <p className='text-2xl leading-8'>
@@ -134,7 +158,7 @@ const Home: NextPage = () => {
               今年３月に銅賞を獲得
             </p>
           </div>
-        </div>
+        </motion.div>
         <div className='bg-gray-200 mt-28 h-24 flex'>
           <Link href='/'>
             <a className='bg-blue-300 text-white block my-6 mx-auto py-3 px-6 rounded-full shadow-md hover:bg-white hover:text-blue-300 duration-700'>
@@ -142,7 +166,7 @@ const Home: NextPage = () => {
             </a>
           </Link>
         </div>
-        <div className='mt-24 text-center mb-16 min-w-max'>
+        <div className='mt-24 text-center mb-16 sm:min-w-max'>
           <p className='text-4xl font-bold'>今年度目標：銀賞の獲得</p>
           <p className='text-2xl font-bold leading-10 my-8 text-red-500'>
             獲得に向けてまずは現在の
@@ -159,7 +183,7 @@ const Home: NextPage = () => {
           {itemList.map((item: any, index: number) => (
             <div className='flex bg-lime-100 mt-16 p-6 w-fit mx-auto shadow-beta' key={item.title}>
               {index % 2 !== 0 && (
-                <ul className='text-center m-auto w-96'>
+                <ul className='text-center m-auto sm:w-96 w-auto'>
                   <li key={index}>
                     <p key={item.title} className='text-3xl pb-4 font-bold'>
                       {item.title}
@@ -173,13 +197,13 @@ const Home: NextPage = () => {
               <div className='min-w-max'>
                 <Image
                   src={'/main' + (index + 1) + '.jpg'}
-                  width={540}
-                  height={360}
+                  width={270}
+                  height={180}
                   alt='メイン画像1'
                 />
               </div>
               {index % 2 === 0 && (
-                <ul className='text-center m-auto w-96'>
+                <ul className='text-center m-auto sm:w-96 w-auto'>
                   <li key={index}>
                     <p key={item.title} className='text-3xl pb-4 font-bold'>
                       {item.title}
@@ -200,7 +224,7 @@ const Home: NextPage = () => {
             </a>
           </Link>
         </div>
-        <div className='mt-24 text-center mb-8 min-w-max'>
+        <div className='mt-24 text-center mb-8 sm:min-w-max'>
           <p className='text-4xl font-bold'>金賞までの道のり</p>
           <p className='text-xl leading-8 mt-8'>
             生産管理グループは今まで5S活動を行ってこなかったため、
@@ -210,7 +234,7 @@ const Home: NextPage = () => {
             金賞の獲得を掲げて活動を続けております。
           </p>
         </div>
-        <div className='w-1/2 m-auto mb-12'>
+        <div className='w-2/3 m-auto mb-12'>
           <Swiper
             effect={'coverflow'}
             grabCursor={true}
@@ -237,7 +261,7 @@ const Home: NextPage = () => {
             })}
           </Swiper>
         </div>
-        <div className='mt-24 text-center min-w-max bg-gray-200 py-6'>
+        <div className='mt-24 text-center sm:min-w-max bg-gray-200 py-6'>
           <p className='text-4xl font-bold'>最後に</p>
           <p className='text-2xl leading-10 mt-8 font-bold'>「３年間で金賞を獲得する」</p>
           <p className='text-xl mt-4'>
@@ -253,7 +277,7 @@ const Home: NextPage = () => {
             height={1944}
             alt='TOP image'
             priority={true}
-            className='w-full'
+            className='sm:w-full'
           />
         </div>
       </main>

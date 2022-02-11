@@ -1,17 +1,18 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
+import Hamburger from './hamburger';
 
 export default function Header() {
   return (
-    <header className='fixed w-full h-24 text-slate-800 bg-white z-50 shadow-md font-body'>
-      <div className='h-full relative flex'>
-        <div className='flex items-center text-left w-full h-full m-auto basis-1/3 min-w-max pl-10'>
+    <header className='fixed w-full sm:h-24 h-11 text-slate-800 bg-white z-50 shadow-md font-body'>
+      <div className='h-full relative sm:flex'>
+        <div className='sm:flex items-center sm:text-left text-left pl-3 w-full h-full m-auto sm:basis-1/3 sm:min-w-max sm:pl-10'>
           <Link href='/'>
-            <a className='text-5xl font-bold leading-20'>5S活動の記録</a>
+            <a className='sm:text-5xl sm:font-bold leading-loose text-2xl'>5S活動の記録</a>
           </Link>
         </div>
-        <ul className='basis-1/3 justify-center m-auto flex min-w-max '>
+        <ul className='basis-1/3 justify-center m-auto sm:flex sm:min-w-max hidden'>
           <li className='px-2 list-none'>
             <Link href='/'>
               <a className='font-light px-2'>Shop</a>
@@ -28,7 +29,7 @@ export default function Header() {
             </Link>
           </li>
         </ul>
-        <ul className='flex basis-1/3 justify-end m-auto px-8 min-w-max '>
+        <ul className='sm:flex basis-1/3 justify-end m-auto px-8 sm:min-w-max hidden'>
           <li className='px-2 block'>
             <Link href='/'>
               <a>
@@ -51,7 +52,7 @@ export default function Header() {
             </Link>
           </li>
         </ul>
-        {/* <Hamburger /> */}
+        <Hamburger />
       </div>
     </header>
   );

@@ -6,7 +6,7 @@ export default function Footer() {
     <>
       <footer className='py-20 mx-auto text-slate-800 w-auto font-body bg-slate-50'>
         <div className='flex m-auto'>
-          <div className='w-1/4 m-auto pl-10 block min-w-max'>
+          <div className='w-1/4 m-auto pl-10 block sm:min-w-max'>
             <Link href='/'>
               <a className='text-4xl font-bold'>5S活動の記録</a>
             </Link>

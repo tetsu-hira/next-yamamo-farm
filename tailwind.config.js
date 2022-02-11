@@ -8,6 +8,10 @@ module.exports = {
       boxShadow: {
         beta: '10px 10px #ccc',
       },
+      rotate: {
+        150: '150deg',
+        '-150': '-150deg',
+      },
     },
     fontFamily: {
       body: [
