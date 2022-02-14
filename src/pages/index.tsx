@@ -30,12 +30,12 @@ type Item = {
 const Home: NextPage = () => {
   const itemList: Item[] = [
     {
-      title: '日々の5S活動',
+      title: '年度目標の見える化',
       content:
         '生産管理室のホワイトボードに計画予定を貼って活動内容の意識を図ったり、前月の実績やクロスパトロールの結果を貼って進捗を見える化しています。',
     },
     {
-      title: '年に一度のPC清掃',
+      title: '仕事道具の維持管理活動',
       content:
         '昨年より年に一度の大掃除と別に予定日を設けて、生産管理室で使っているデスクトップPCの清掃を行うことで仕事道具の維持管理を行っております。',
     },
@@ -45,6 +45,7 @@ const Home: NextPage = () => {
         '日々の整理整頓や清掃だけでなく、地震時にPCが倒れてこないようにするなどの安全対策も5S活動の一環として行うことで、より良い職場を作ります。',
     },
   ];
+
   const introList: string[] = [
     '【生産管理の5S活動】',
     '　日々の5S活動や年に一度のPC掃除など',
@@ -60,6 +61,21 @@ const Home: NextPage = () => {
     threshold: [1],
     triggerOnce: true,
   });
+
+  const infoList: Item[] = [
+    {
+      title: '21年12月25日',
+      content: '生産管理室の大掃除を行いました',
+    },
+    {
+      title: '22年01月07日',
+      content: '大掃除の写真をUPしました',
+    },
+    {
+      title: '21年01月28日',
+      content: '生産管理グループで5S会議を行いました',
+    },
+  ];
 
   const variants = {
     moved: { y: 0 },
@@ -129,170 +145,193 @@ const Home: NextPage = () => {
         </div>
         <motion.div
           ref={ref}
-          className='-mt-2'
+          className='mt-16 shadow bg-white'
           initial='hidden'
           animate={controls}
           variants={variants}
           transition={{ duration: 1 }}
         >
-          <div className='bg-red-300 sm:py-4 py-1 sm:text-xl text-center'>ー　新着情報　ー</div>
-          <div className='bg-white pt-4 shadow'>
-            <div className='text-red-500 font-bold sm:text-base text-sm'>21.12.11</div>
-            <div className='sm:text-xl ml-2 mb-3'>生産管理で5S会議を行いました</div>
-            <div className='text-red-500 font-bold sm:text-base text-sm'>21.12.28</div>
-            <div className='sm:text-xl ml-2 mb-3'>大掃除の写真をUPしました</div>
+          <div className='sm:py-4 py-3 sm:text-xl text-center border-b'>ー　新着情報　ー</div>
+          <div className=''>
+            {infoList.map((info: any, index: number) => (
+              <Link href='/' key={index}>
+                <a className='flex w-full justify-between border-b'>
+                  <div className='pb-2 pt-3 pl-6 w-full'>
+                    <div className='text-xs leading-none'>{info.title}</div>
+                    <div>{info.content}</div>
+                  </div>
+                  <div className='w-8 block m-auto'>
+                    <div className='w-3 h-3 border rotate-45 border-t-black border-r-black border-b-transparent border-l-transparent text-left'></div>
+                  </div>
+                </a>
+              </Link>
+            ))}
             <Link href='/'>
-              <a className='sm:mt-16 block ml-8 sm:pb-4 pb-2 sm:text-base text-xs'>
+              <a className='sm:mt-16 block mr-4 sm:pb-4 py-2 sm:text-base text-xs text-right'>
                 ▶　一覧はこちら
               </a>
             </Link>
           </div>
         </motion.div>
         <motion.div
-          className='flex my-16 sm:my-16 text-center justify-center bg-white shadow p-2'
+          className='sm:flex my-16 sm:my-16 text-center justify-center bg-white p-2 shadow'
           initial='hidden'
           // animate={controls}
           variants={opacityVariants}
           transition={{ duration: 1 }}
         >
-          <div className='sm:min-w-max w-1/2'>
+          <div>
+            <div className='my-auto text-center sm:pl-24 sm:min-w-max sm:w-1/2'>
+              <p className='sm:text-2xl'>生産管理の</p>
+              <p className='sm:text-5xl text-xl font-bold sm:pb-8 pb-2'>5S活動の歩み</p>
+            </div>
+            <div className='sm:min-w-max sm:w-1/2 w-3/4 m-auto my-2'>
+              <Link href='/'>
+                <a>
+                  <Image
+                    className='w-full'
+                    src='/5Scycle.png'
+                    width={416}
+                    height={400}
+                    alt='5S活動のイメージ'
+                  />
+                </a>
+              </Link>
+            </div>
+            <div className='flex m-auto justify-center'>
+              <div className='w-1/2'>
+                <p className='sm:text-2xl sm:leading-8'>
+                  ２年前より活動を開始
+                  <br />
+                  順調に活動を進め、
+                  <br />
+                  今年３月に銅賞を獲得
+                </p>
+              </div>
+              <div className='sm:mt-28 sm:h-24 sm:flex w-1/2 m-auto'>
+                <Link href='/'>
+                  <a className='bg-red-400 text-white block mx-auto py-3 px-6 rounded-full shadow sm:hover:bg-white sm:hover:text-blue-300 sm:duration-700 w-44'>
+                    今までの活動を見る
+                  </a>
+                </Link>
+              </div>
+            </div>
+          </div>
+        </motion.div>
+        <div className='sm:mt-24 py-4 mt-16 text-center mb-16 sm:min-w-max bg-white shadow'>
+          <div className='my-auto text-center sm:pl-24 sm:min-w-max sm:w-1/2'>
+            <p className='sm:text-2xl'>今年度目標</p>
+            <p className='sm:text-5xl text-xl font-bold sm:pb-8 pb-2'>銀賞の獲得</p>
+          </div>
+          <div>
+            <p className='sm:text-xl sm:leading-8'>
+              上記の目標を今年度中に達成するために
+              <br />
+              以下のような活動を日々行っております
+            </p>
+          </div>
+          <div className='sm:mt-8 p-4 sm:pb-4 mx-auto'>
+            {itemList.map((item: any, index: number) => (
+              <div
+                key={item.title}
+                className='bg-lime-100 sm:mt-16 p-4 w-fit mx-auto shadow-beta mb-6'
+              >
+                <div className='flex '>
+                  {index % 2 !== 0 && (
+                    <p key={item.title} className='sm:text-3xl font-bold text-xl m-auto pr-4 w-60'>
+                      {item.title}
+                    </p>
+                  )}
+                  <div className='sm:min-w-max w-full'>
+                    <Image
+                      src={'/main' + (index + 1) + '.jpg'}
+                      width={270}
+                      height={180}
+                      alt='メイン画像1'
+                    />
+                  </div>
+                  {index % 2 === 0 && (
+                    <p key={item.title} className='sm:text-3xl font-bold text-xl m-auto pl-4 w-60'>
+                      {item.title}
+                    </p>
+                  )}
+                </div>
+                <p key={item.content} className='sm:text-xl m-auto mt-4 text-left'>
+                  {item.content}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+        <div className='mt-24 py-4 text-center mb-8 sm:min-w-max bg-white shadow'>
+          <div className='my-auto text-center sm:pl-24 sm:min-w-max sm:w-1/2'>
+            <p className='sm:text-2xl'>最終目標となる</p>
+            <p className='sm:text-5xl text-xl font-bold sm:pb-8 pb-2'>金賞までの道のり</p>
+          </div>
+          <div>
+            <p className='sm:text-xl sm:leading-8'>
+              生産管理グループは今まで5S活動を行ってこなかったため、
+              <br />
+              昨年度より長期的な最終目標として
+              <br />
+              金賞の獲得を掲げて日々の活動を続けております。
+            </p>
+          </div>
+          <div className='w-11/12 m-auto my-8'>
+            <Swiper
+              effect={'coverflow'}
+              grabCursor={true}
+              centeredSlides={true}
+              slidesPerView={1.6}
+              coverflowEffect={{
+                rotate: 50,
+                stretch: 0,
+                depth: 200,
+                modifier: 1,
+                slideShadows: true,
+              }}
+              pagination={true}
+              modules={[EffectCoverflow, Pagination]}
+              loop={true}
+              className=''
+            >
+              {images.map((src: string, index: number) => {
+                return (
+                  <SwiperSlide key={`${index}`}>
+                    <Image
+                      src={src}
+                      layout='responsive'
+                      width={640}
+                      height={400}
+                      alt='test_image'
+                    />
+                  </SwiperSlide>
+                );
+              })}
+            </Swiper>
+          </div>
+          <div className='sm:mt-28 sm:h-24 sm:flex w-1/2 m-auto'>
             <Link href='/'>
-              <a>
-                <Image
-                  className='w-full'
-                  src='/5Scycle.png'
-                  width={416}
-                  height={400}
-                  alt='5S活動のイメージ'
-                />
+              <a className='bg-red-400 text-white block mx-auto py-3 px-6 rounded-full shadow sm:hover:bg-white sm:hover:text-blue-300 sm:duration-700 w-44'>
+                過去の活動一覧
               </a>
             </Link>
           </div>
-          <div className='my-auto text-center sm:pl-24 sm:min-w-max w-1/2'>
-            <p className='sm:text-2xl'>生産管理の</p>
-            <p className='sm:text-5xl text-xl font-bold sm:pb-8 pb-2'>5S活動の歩み</p>
-            <p className='sm:text-2xl sm:leading-8'>
-              ２年前より活動を開始
+        </div>
+        <div className='mt-24 text-center sm:min-w-max bg-white shadow py-6'>
+          <div className='my-auto text-center sm:pl-24 sm:min-w-max sm:w-1/2'>
+            <p className='sm:text-2xl'>最後に</p>
+            <p className='sm:text-5xl text-xl font-bold sm:pb-8 pb-2'>「３年間で金賞を獲得する」</p>
+          </div>
+          <div className='w-4/5 m-auto'>
+            <p className='sm:text-xl sm:leading-8'>
+              私たちは上記の目標に向けて日々活動を続けており、そのための通過点が銅賞、銀賞です。
               <br />
-              順調に活動を進め、
+              今まで行ってきた活動はそのための一歩です。
               <br />
-              今年３月に銅賞を獲得
+              本サイトにてその履歴をご覧ください。
             </p>
           </div>
-        </motion.div>
-        <div className='sm:mt-28 sm:h-24 flex'>
-          <Link href='/'>
-            <a className='bg-red-200 text-white block mx-auto py-3 px-6 rounded-full shadow-md hover:bg-white hover:text-blue-300 sm:duration-700'>
-              今までの活動を見る
-            </a>
-          </Link>
-        </div>
-        <div className='sm:mt-24 py-4 mt-16 text-center mb-16 sm:min-w-max bg-white shadow'>
-          <p className='text-2xl sm:text-4xl font-bold'>今年度目標：銀賞の獲得</p>
-          <p className='text-xl sm:text-2xl font-bold leading-8 sm:leading-10 my-4 sm:my-8 text-red-500'>
-            獲得に向けてまずは現在の
-            <br />
-            整頓状況を維持することが条件
-          </p>
-          <p className='sm:text-xl sm:leading-8'>
-            その上でさらに細かな箇所を改善していくことで
-            <br />
-            銀賞の条件を達成して申請を行いたいと思います。
-          </p>
-        </div>
-        <div className='mt-8 p-4 sm:pb-4 mx-auto bg-white shadow'>
-          {itemList.map((item: any, index: number) => (
-            <div
-              className='sm:flex bg-lime-100 mt-16 p-6 w-fit mx-auto shadow-beta'
-              key={item.title}
-            >
-              {index % 2 !== 0 && (
-                <ul className='text-center m-auto sm:w-96 w-1/2'>
-                  <li key={index}>
-                    <p key={item.title} className='sm:text-3xl pb-4 font-bold'>
-                      {item.title}
-                    </p>
-                    <p key={item.content} className='sm:text-xl mr-6 text-left'>
-                      {item.content}
-                    </p>
-                  </li>
-                </ul>
-              )}
-              <div className='sm:min-w-max w-auto'>
-                <Image
-                  src={'/main' + (index + 1) + '.jpg'}
-                  width={270}
-                  height={180}
-                  alt='メイン画像1'
-                />
-              </div>
-              {index % 2 === 0 && (
-                <ul className='text-center m-auto sm:w-96 w-1/2'>
-                  <li key={index}>
-                    <p key={item.title} className='sm:text-3xl pb-4 font-bold'>
-                      {item.title}
-                    </p>
-                    <p key={item.content} className='sm:text-xl ml-6 text-left'>
-                      {item.content}
-                    </p>
-                  </li>
-                </ul>
-              )}
-            </div>
-          ))}
-        </div>
-        <div className='bg-gray-200 mt-16 h-24 flex'>
-          <Link href='/'>
-            <a className='bg-blue-300 text-white block my-6 mx-auto py-3 px-6 rounded-full shadow-md hover:bg-white hover:text-blue-300 duration-700'>
-              今までの活動を見る
-            </a>
-          </Link>
-        </div>
-        <div className='mt-24 text-center mb-8 sm:min-w-max'>
-          <p className='text-4xl font-bold'>金賞までの道のり</p>
-          <p className='text-xl leading-8 mt-8'>
-            生産管理グループは今まで5S活動を行ってこなかったため、
-            <br />
-            昨年度より長期的な最終目標として
-            <br />
-            金賞の獲得を掲げて活動を続けております。
-          </p>
-        </div>
-        <div className='w-2/3 m-auto mb-12'>
-          <Swiper
-            effect={'coverflow'}
-            grabCursor={true}
-            centeredSlides={true}
-            slidesPerView={1.6}
-            coverflowEffect={{
-              rotate: 50,
-              stretch: 0,
-              depth: 200,
-              modifier: 1,
-              slideShadows: true,
-            }}
-            pagination={true}
-            modules={[EffectCoverflow, Pagination]}
-            loop={true}
-            className=''
-          >
-            {images.map((src: string, index: number) => {
-              return (
-                <SwiperSlide key={`${index}`}>
-                  <Image src={src} layout='responsive' width={640} height={400} alt='test_image' />
-                </SwiperSlide>
-              );
-            })}
-          </Swiper>
-        </div>
-        <div className='mt-24 text-center sm:min-w-max bg-gray-200 py-6'>
-          <p className='text-4xl font-bold'>最後に</p>
-          <p className='text-2xl leading-10 mt-8 font-bold'>「３年間で金賞を獲得する」</p>
-          <p className='text-xl mt-4'>
-            私たちは上記の目標に向けて日々活動を続けており、そのための通過点が銅賞、銀賞です。
-          </p>
-          <p className='pt-4 text-xl'>今まで行ってきた活動はそのための一歩です。</p>
-          <p className='pt-4 text-xl'>本サイトにてその軌跡をご確認ください。</p>
         </div>
         <div>
           <Image

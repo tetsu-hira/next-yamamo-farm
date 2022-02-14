@@ -7,7 +7,7 @@ export default function Header() {
   return (
     <header className='fixed w-full sm:h-24 h-11 text-slate-800 bg-white z-50 shadow-md font-body'>
       <div className='h-full relative sm:flex'>
-        <div className='sm:flex items-center sm:text-left text-left pl-3 w-full h-full m-auto sm:basis-1/3 sm:min-w-max sm:pl-10'>
+        <div className='sm:flex items-center sm:text-left text-center w-full h-full m-auto sm:basis-1/3 sm:min-w-max sm:pl-10'>
           <Link href='/'>
             <a className='sm:text-5xl sm:font-bold leading-loose text-2xl'>5S活動の記録</a>
           </Link>
@@ -48,6 +48,22 @@ export default function Header() {
             <Link href='/'>
               <a>
                 <Image src='/cart.svg' width={36} height={36} alt='cartイメージ' />
+              </a>
+            </Link>
+          </li>
+        </ul>
+        <ul className='flex absolute right-1 top-2.5 sm:min-w-max sm:hidden'>
+          <li className='px-1 block'>
+            <Link href='/'>
+              <a>
+                <Image src='/user.svg' width={28} height={28} alt='userイメージ' />
+              </a>
+            </Link>
+          </li>
+          <li className='px-1 block'>
+            <Link href='/'>
+              <a>
+                <Image src='/cart.svg' width={28} height={28} alt='cartイメージ' />
               </a>
             </Link>
           </li>
