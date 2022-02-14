@@ -30,17 +30,17 @@ type Item = {
 const Home: NextPage = () => {
   const itemList: Item[] = [
     {
-      title: '年度目標の見える化',
+      title: '今年度目標の見える化',
       content:
         '生産管理室のホワイトボードに計画予定を貼って活動内容の意識を図ったり、前月の実績やクロスパトロールの結果を貼って進捗を見える化しています。',
     },
     {
-      title: '仕事道具の維持管理活動',
+      title: 'デスクトップPCの管理計画',
       content:
         '昨年より年に一度の大掃除と別に予定日を設けて、生産管理室で使っているデスクトップPCの清掃を行うことで仕事道具の維持管理を行っております。',
     },
     {
-      title: '安全にも配慮',
+      title: '災害発生時の安全対策',
       content:
         '日々の整理整頓や清掃だけでなく、地震時にPCが倒れてこないようにするなどの安全対策も5S活動の一環として行うことで、より良い職場を作ります。',
     },
@@ -56,9 +56,24 @@ const Home: NextPage = () => {
     hidden: { opacity: 0, x: -1000 },
   };
 
-  const controls = useAnimation();
-  const [ref, inView] = useInView({
+  const controls1 = useAnimation();
+  const controls2 = useAnimation();
+  const controls3 = useAnimation();
+  const controls4 = useAnimation();
+  const [ref1, inView1] = useInView({
     threshold: [1],
+    triggerOnce: true,
+  });
+  const [ref2, inView2] = useInView({
+    threshold: [0.3],
+    triggerOnce: true,
+  });
+  const [ref3, inView3] = useInView({
+    threshold: [1],
+    triggerOnce: true,
+  });
+  const [ref4, inView4] = useInView({
+    threshold: [0.8],
     triggerOnce: true,
   });
 
@@ -79,16 +94,40 @@ const Home: NextPage = () => {
 
   const variants = {
     moved: { y: 0 },
-    initial: { y: -250 },
+    initial: { y: -300 },
   };
   useEffect(() => {
-    if (inView) {
-      controls.start('moved');
+    if (inView1) {
+      controls1.start('moved');
     } else {
-      controls.stop();
-      controls.set('initial');
+      controls1.stop();
+      controls1.set('initial');
     }
-  }, [controls, inView]);
+  }, [controls1, inView1]);
+  useEffect(() => {
+    if (inView2) {
+      controls2.start('moved');
+    } else {
+      controls2.stop();
+      controls2.set('initial');
+    }
+  }, [controls2, inView2]);
+  useEffect(() => {
+    if (inView3) {
+      controls3.start('moved');
+    } else {
+      controls3.stop();
+      controls3.set('initial');
+    }
+  }, [controls3, inView3]);
+  useEffect(() => {
+    if (inView4) {
+      controls4.start('moved');
+    } else {
+      controls4.stop();
+      controls4.set('initial');
+    }
+  }, [controls4, inView4]);
 
   const opacityVariants = {
     moved: { opacity: 1 },
@@ -109,7 +148,7 @@ const Home: NextPage = () => {
         />
       </Head>
 
-      <main className='bg-green-100'>
+      <main className='bg-green-100 pb-16'>
         <div className='relative'>
           <motion.div
             initial={{ opacity: 0 }}
@@ -136,7 +175,7 @@ const Home: NextPage = () => {
                 className='font-bold text-xl sm:text-5xl leading-relaxed'
                 key={index}
                 variants={introVariants}
-                transition={{ duration: 1, delay: index * 1 + 1 }}
+                transition={{ duration: 1, delay: index * 0.5 + 1 }}
               >
                 {intro}
               </motion.p>
@@ -144,11 +183,10 @@ const Home: NextPage = () => {
           </motion.div>
         </div>
         <motion.div
-          ref={ref}
           className='mt-16 shadow bg-white'
-          initial='hidden'
-          animate={controls}
-          variants={variants}
+          initial={{ y: -300 }}
+          animate={{ y: 0 }}
+          // variants={variants}
           transition={{ duration: 1 }}
         >
           <div className='sm:py-4 py-3 sm:text-xl text-center border-b'>ー　新着情報　ー</div>
@@ -175,8 +213,9 @@ const Home: NextPage = () => {
         </motion.div>
         <motion.div
           className='sm:flex my-16 sm:my-16 text-center justify-center bg-white p-2 shadow'
+          ref={ref1}
           initial='hidden'
-          // animate={controls}
+          animate={controls1}
           variants={opacityVariants}
           transition={{ duration: 1 }}
         >
@@ -218,7 +257,14 @@ const Home: NextPage = () => {
             </div>
           </div>
         </motion.div>
-        <div className='sm:mt-24 py-4 mt-16 text-center mb-16 sm:min-w-max bg-white shadow'>
+        <motion.div
+          className='sm:mt-24 py-4 mt-16 text-center mb-16 sm:min-w-max bg-white shadow'
+          ref={ref2}
+          initial='hidden'
+          animate={controls2}
+          variants={opacityVariants}
+          transition={{ duration: 1 }}
+        >
           <div className='my-auto text-center sm:pl-24 sm:min-w-max sm:w-1/2'>
             <p className='sm:text-2xl'>今年度目標</p>
             <p className='sm:text-5xl text-xl font-bold sm:pb-8 pb-2'>銀賞の獲得</p>
@@ -230,7 +276,7 @@ const Home: NextPage = () => {
               以下のような活動を日々行っております
             </p>
           </div>
-          <div className='sm:mt-8 p-4 sm:pb-4 mx-auto'>
+          <div className='sm:mt-8 p-6 sm:pb-4 mx-auto'>
             {itemList.map((item: any, index: number) => (
               <div
                 key={item.title}
@@ -262,8 +308,15 @@ const Home: NextPage = () => {
               </div>
             ))}
           </div>
-        </div>
-        <div className='mt-24 py-4 text-center mb-8 sm:min-w-max bg-white shadow'>
+        </motion.div>
+        <motion.div
+          className='mt-16 py-4 text-center mb-8 sm:min-w-max bg-white shadow'
+          ref={ref3}
+          initial='hidden'
+          animate={controls3}
+          variants={opacityVariants}
+          transition={{ duration: 1 }}
+        >
           <div className='my-auto text-center sm:pl-24 sm:min-w-max sm:w-1/2'>
             <p className='sm:text-2xl'>最終目標となる</p>
             <p className='sm:text-5xl text-xl font-bold sm:pb-8 pb-2'>金賞までの道のり</p>
@@ -277,7 +330,7 @@ const Home: NextPage = () => {
               金賞の獲得を掲げて日々の活動を続けております。
             </p>
           </div>
-          <div className='w-11/12 m-auto my-8'>
+          <div className='w-11/12 m-auto mt-4 mb-8'>
             <Swiper
               effect={'coverflow'}
               grabCursor={true}
@@ -317,8 +370,15 @@ const Home: NextPage = () => {
               </a>
             </Link>
           </div>
-        </div>
-        <div className='mt-24 text-center sm:min-w-max bg-white shadow py-6'>
+        </motion.div>
+        <motion.div
+          className='mt-16 text-center sm:min-w-max bg-white shadow py-4'
+          ref={ref4}
+          initial='hidden'
+          animate={controls4}
+          variants={opacityVariants}
+          transition={{ duration: 1 }}
+        >
           <div className='my-auto text-center sm:pl-24 sm:min-w-max sm:w-1/2'>
             <p className='sm:text-2xl'>最後に</p>
             <p className='sm:text-5xl text-xl font-bold sm:pb-8 pb-2'>「３年間で金賞を獲得する」</p>
@@ -329,20 +389,20 @@ const Home: NextPage = () => {
               <br />
               今まで行ってきた活動はそのための一歩です。
               <br />
-              本サイトにてその履歴をご覧ください。
+              本サイトにてぜひとも活動詳細をご覧ください。
             </p>
           </div>
-        </div>
-        <div>
-          <Image
-            src='/fin.jpg'
-            width={2592}
-            height={1944}
-            alt='TOP image'
-            priority={true}
-            className='sm:w-full'
-          />
-        </div>
+          <div className='mt-4'>
+            <Image
+              src='/fin.jpg'
+              width={2592}
+              height={1944}
+              alt='TOP image'
+              priority={true}
+              className='sm:w-full'
+            />
+          </div>
+        </motion.div>
       </main>
     </>
   );
