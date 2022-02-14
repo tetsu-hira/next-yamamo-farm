@@ -45,6 +45,15 @@ const Home: NextPage = () => {
         '日々の整理整頓や清掃だけでなく、地震時にPCが倒れてこないようにするなどの安全対策も5S活動の一環として行うことで、より良い職場を作ります。',
     },
   ];
+  const introList: string[] = [
+    '【生産管理の5S活動】',
+    '　日々の5S活動や年に一度のPC掃除など',
+    '　金賞の獲得を目指して続けております',
+  ];
+  const introVariants = {
+    visible: { opacity: 1, x: 0 },
+    hidden: { opacity: 0, x: -1000 },
+  };
 
   const controls = useAnimation();
   const [ref, inView] = useInView({
@@ -54,7 +63,7 @@ const Home: NextPage = () => {
 
   const variants = {
     moved: { y: 0 },
-    initial: { y: -300 },
+    initial: { y: -250 },
   };
   useEffect(() => {
     if (inView) {
@@ -84,29 +93,38 @@ const Home: NextPage = () => {
         />
       </Head>
 
-      <main>
+      <main className='bg-green-100'>
         <div className='relative'>
-          <Image
-            src='/top1.jpg'
-            width={2592}
-            height={1944}
-            alt='TOP image'
-            priority={true}
-            className='sm:w-full z-10'
-          />
           <motion.div
-            className='absolute bottom-4 z-30 left-10 text-white sm:min-w-max hidden sm:block'
-            initial={{ x: -1000 }}
-            animate={{ x: 0 }}
-            transition={{ duration: 2 }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 2.5 }}
           >
-            <p className='font-bold text-5xl leading-relaxed'>【生産管理の5S活動】</p>
-            <p className='font-bold text-5xl leading-relaxed'>
-              　日々の5S活動や年に一度のPC掃除など
-            </p>
-            <p className='font-bold text-5xl leading-relaxed'>
-              　金賞の獲得を目指して続けております
-            </p>
+            <Image
+              src='/top1.jpg'
+              width={2592}
+              height={1944}
+              alt='TOP image'
+              priority={true}
+              className='sm:w-full z-10'
+            />
+          </motion.div>
+          <motion.div
+            className='absolute bottom-4 z-30 sm:left-10 left-5 text-white sm:min-w-max sm:block'
+            initial='hidden'
+            animate='visible'
+            variants={introVariants}
+          >
+            {introList.map((intro: string, index: number) => (
+              <motion.p
+                className='font-bold text-xl sm:text-5xl leading-relaxed'
+                key={index}
+                variants={introVariants}
+                transition={{ duration: 1, delay: index * 1 + 1 }}
+              >
+                {intro}
+              </motion.p>
+            ))}
           </motion.div>
         </div>
         <motion.div
@@ -117,29 +135,31 @@ const Home: NextPage = () => {
           variants={variants}
           transition={{ duration: 1 }}
         >
-          <div className='bg-pink-300 py-4 text-xl text-center'>ー　新着情報　ー</div>
-          <div className='bg-pink-100 pt-4 shadow'>
-            <div className='text-pink-500 font-bold text-base'>21.12.11</div>
-            <div className='text-xl ml-2 mb-3'>生産管理で5S会議を行いました</div>
-            <div className='text-pink-500 font-bold text-base'>21.12.28</div>
-            <div className='text-xl ml-2 mb-3'>大掃除の写真をUPしました</div>
+          <div className='bg-red-300 sm:py-4 py-1 sm:text-xl text-center'>ー　新着情報　ー</div>
+          <div className='bg-white pt-4 shadow'>
+            <div className='text-red-500 font-bold sm:text-base text-sm'>21.12.11</div>
+            <div className='sm:text-xl ml-2 mb-3'>生産管理で5S会議を行いました</div>
+            <div className='text-red-500 font-bold sm:text-base text-sm'>21.12.28</div>
+            <div className='sm:text-xl ml-2 mb-3'>大掃除の写真をUPしました</div>
             <Link href='/'>
-              <a className='mt-16 block ml-8 pb-4'>▶　一覧はこちら</a>
+              <a className='sm:mt-16 block ml-8 sm:pb-4 pb-2 sm:text-base text-xs'>
+                ▶　一覧はこちら
+              </a>
             </Link>
           </div>
         </motion.div>
         <motion.div
-          className='flex my-16 text-center justify-center'
+          className='flex my-16 sm:my-16 text-center justify-center bg-white shadow p-2'
           initial='hidden'
           // animate={controls}
           variants={opacityVariants}
           transition={{ duration: 1 }}
         >
-          <div className='sm:min-w-max'>
+          <div className='sm:min-w-max w-1/2'>
             <Link href='/'>
               <a>
                 <Image
-                  className='w-auto'
+                  className='w-full'
                   src='/5Scycle.png'
                   width={416}
                   height={400}
@@ -148,10 +168,10 @@ const Home: NextPage = () => {
               </a>
             </Link>
           </div>
-          <div className='my-auto text-center pl-24 sm:min-w-max'>
-            <p className='text-2xl'>生産管理の</p>
-            <p className='text-5xl font-bold pb-8'>5S活動の歩み</p>
-            <p className='text-2xl leading-8'>
+          <div className='my-auto text-center sm:pl-24 sm:min-w-max w-1/2'>
+            <p className='sm:text-2xl'>生産管理の</p>
+            <p className='sm:text-5xl text-xl font-bold sm:pb-8 pb-2'>5S活動の歩み</p>
+            <p className='sm:text-2xl sm:leading-8'>
               ２年前より活動を開始
               <br />
               順調に活動を進め、
@@ -160,42 +180,45 @@ const Home: NextPage = () => {
             </p>
           </div>
         </motion.div>
-        <div className='bg-gray-200 mt-28 h-24 flex'>
+        <div className='sm:mt-28 sm:h-24 flex'>
           <Link href='/'>
-            <a className='bg-blue-300 text-white block my-6 mx-auto py-3 px-6 rounded-full shadow-md hover:bg-white hover:text-blue-300 duration-700'>
+            <a className='bg-red-200 text-white block mx-auto py-3 px-6 rounded-full shadow-md hover:bg-white hover:text-blue-300 sm:duration-700'>
               今までの活動を見る
             </a>
           </Link>
         </div>
-        <div className='mt-24 text-center mb-16 sm:min-w-max'>
-          <p className='text-4xl font-bold'>今年度目標：銀賞の獲得</p>
-          <p className='text-2xl font-bold leading-10 my-8 text-red-500'>
+        <div className='sm:mt-24 py-4 mt-16 text-center mb-16 sm:min-w-max bg-white shadow'>
+          <p className='text-2xl sm:text-4xl font-bold'>今年度目標：銀賞の獲得</p>
+          <p className='text-xl sm:text-2xl font-bold leading-8 sm:leading-10 my-4 sm:my-8 text-red-500'>
             獲得に向けてまずは現在の
             <br />
             整頓状況を維持することが条件
           </p>
-          <p className='text-xl leading-8'>
+          <p className='sm:text-xl sm:leading-8'>
             その上でさらに細かな箇所を改善していくことで
             <br />
             銀賞の条件を達成して申請を行いたいと思います。
           </p>
         </div>
-        <div className='mt-8 pb-4 mx-auto'>
+        <div className='mt-8 p-4 sm:pb-4 mx-auto bg-white shadow'>
           {itemList.map((item: any, index: number) => (
-            <div className='flex bg-lime-100 mt-16 p-6 w-fit mx-auto shadow-beta' key={item.title}>
+            <div
+              className='sm:flex bg-lime-100 mt-16 p-6 w-fit mx-auto shadow-beta'
+              key={item.title}
+            >
               {index % 2 !== 0 && (
-                <ul className='text-center m-auto sm:w-96 w-auto'>
+                <ul className='text-center m-auto sm:w-96 w-1/2'>
                   <li key={index}>
-                    <p key={item.title} className='text-3xl pb-4 font-bold'>
+                    <p key={item.title} className='sm:text-3xl pb-4 font-bold'>
                       {item.title}
                     </p>
-                    <p key={item.content} className='text-xl mr-6 text-left'>
+                    <p key={item.content} className='sm:text-xl mr-6 text-left'>
                       {item.content}
                     </p>
                   </li>
                 </ul>
               )}
-              <div className='min-w-max'>
+              <div className='sm:min-w-max w-auto'>
                 <Image
                   src={'/main' + (index + 1) + '.jpg'}
                   width={270}
@@ -204,12 +227,12 @@ const Home: NextPage = () => {
                 />
               </div>
               {index % 2 === 0 && (
-                <ul className='text-center m-auto sm:w-96 w-auto'>
+                <ul className='text-center m-auto sm:w-96 w-1/2'>
                   <li key={index}>
-                    <p key={item.title} className='text-3xl pb-4 font-bold'>
+                    <p key={item.title} className='sm:text-3xl pb-4 font-bold'>
                       {item.title}
                     </p>
-                    <p key={item.content} className='text-xl ml-6 text-left'>
+                    <p key={item.content} className='sm:text-xl ml-6 text-left'>
                       {item.content}
                     </p>
                   </li>
