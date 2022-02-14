@@ -213,7 +213,7 @@ const Home: NextPage = () => {
             />
           </motion.div>
           <motion.div
-            className='absolute bottom-4 z-30 sm:left-10 left-5 text-red-400 text-shadow-md sm:min-w-max sm:block'
+            className='absolute bottom-4 z-30 sm:left-10 left-3 text-red-400 text-shadow-md sm:min-w-max sm:block'
             initial='hidden'
             animate='visible'
             variants={introVariants}
@@ -295,9 +295,9 @@ const Home: NextPage = () => {
                   今年３月に銅賞を獲得
                 </p>
               </div>
-              <div className='sm:mt-28 sm:h-24 sm:flex w-1/2 m-auto'>
+              <div className='sm:mt-28 sm:h-24 sm:flex w-auto m-auto'>
                 <Link href='/'>
-                  <a className='bg-red-400 text-white block mx-auto py-3 px-6 rounded-full shadow sm:hover:bg-white sm:hover:text-blue-300 sm:duration-700 w-auto'>
+                  <a className='bg-red-400 text-white block mx-auto py-3 px-6 rounded-full shadow sm:hover:bg-white sm:hover:text-blue-300 sm:duration-700 w-auto min-w-full'>
                     今までの活動を見る
                   </a>
                 </Link>
@@ -418,7 +418,7 @@ const Home: NextPage = () => {
           </div>
           <div className='sm:mt-28 sm:h-24 sm:flex w-1/2 m-auto'>
             <Link href='/'>
-              <a className='bg-red-400 text-white block mx-auto py-3 px-6 rounded-full shadow sm:hover:bg-white sm:hover:text-blue-300 sm:duration-700 w-44'>
+              <a className='bg-red-400 text-white block mx-auto py-3 px-6 rounded-full shadow sm:hover:bg-white sm:hover:text-blue-300 sm:duration-700 w-auto min-w-full'>
                 今までの活動を見る
               </a>
             </Link>
