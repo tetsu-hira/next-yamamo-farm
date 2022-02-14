@@ -27,25 +27,14 @@ type Item = {
   content: string;
 };
 
-const Home: NextPage = () => {
-  const itemList: Item[] = [
-    {
-      title: '今年度目標の見える化',
-      content:
-        '生産管理室のホワイトボードに計画予定を貼って活動内容の意識を図ったり、前月の実績やクロスパトロールの結果を貼って進捗を見える化しています。',
-    },
-    {
-      title: 'デスクトップPCの管理計画',
-      content:
-        '昨年より年に一度の大掃除と別に予定日を設けて、生産管理室で使っているデスクトップPCの清掃を行うことで仕事道具の維持管理を行っております。',
-    },
-    {
-      title: '災害発生時の安全対策',
-      content:
-        '日々の整理整頓や清掃だけでなく、地震時にPCが倒れてこないようにするなどの安全対策も5S活動の一環として行うことで、より良い職場を作ります。',
-    },
-  ];
+type Pros = {
+  title: string;
+  content: string;
+  ref: any;
+  control: any;
+};
 
+const Home: NextPage = () => {
   const introList: string[] = [
     '【生産管理の5S活動】',
     '　日々の5S活動や年に一度のPC掃除など',
@@ -60,8 +49,11 @@ const Home: NextPage = () => {
   const controls2 = useAnimation();
   const controls3 = useAnimation();
   const controls4 = useAnimation();
+  const controls5 = useAnimation();
+  const controls6 = useAnimation();
+  const controls7 = useAnimation();
   const [ref1, inView1] = useInView({
-    threshold: [1],
+    threshold: [0.8],
     triggerOnce: true,
   });
   const [ref2, inView2] = useInView({
@@ -74,6 +66,18 @@ const Home: NextPage = () => {
   });
   const [ref4, inView4] = useInView({
     threshold: [0.8],
+    triggerOnce: true,
+  });
+  const [ref5, inView5] = useInView({
+    threshold: [1],
+    triggerOnce: true,
+  });
+  const [ref6, inView6] = useInView({
+    threshold: [1],
+    triggerOnce: true,
+  });
+  const [ref7, inView7] = useInView({
+    threshold: [1],
     triggerOnce: true,
   });
 
@@ -92,10 +96,30 @@ const Home: NextPage = () => {
     },
   ];
 
-  const variants = {
-    moved: { y: 0 },
-    initial: { y: -300 },
-  };
+  const itemList: Pros[] = [
+    {
+      title: '今年度目標の見える化',
+      content:
+        '生産管理室のホワイトボードに計画予定を貼って活動内容の意識を図ったり、前月の実績やクロスパトロールの結果を貼って進捗を見える化しています。',
+      ref: ref5,
+      control: controls5,
+    },
+    {
+      title: 'デスクトップPCの清掃',
+      content:
+        '昨年より年に一度の大掃除と別に予定日を設けて、生産管理室で使っているデスクトップPCの清掃を行うことで仕事道具の維持管理を行っております。',
+      ref: ref6,
+      control: controls6,
+    },
+    {
+      title: '災害発生時の安全対策',
+      content:
+        '日々の整理整頓や清掃だけでなく、地震時にPCが倒れてこないようにするなどの安全対策も5S活動の一環として行うことで、より良い職場を作ります。',
+      ref: ref7,
+      control: controls7,
+    },
+  ];
+
   useEffect(() => {
     if (inView1) {
       controls1.start('moved');
@@ -128,6 +152,30 @@ const Home: NextPage = () => {
       controls4.set('initial');
     }
   }, [controls4, inView4]);
+  useEffect(() => {
+    if (inView5) {
+      controls5.start('moved');
+    } else {
+      controls5.stop();
+      controls5.set('initial');
+    }
+  }, [controls5, inView5]);
+  useEffect(() => {
+    if (inView6) {
+      controls6.start('moved');
+    } else {
+      controls6.stop();
+      controls6.set('initial');
+    }
+  }, [controls6, inView6]);
+  useEffect(() => {
+    if (inView7) {
+      controls7.start('moved');
+    } else {
+      controls7.stop();
+      controls7.set('initial');
+    }
+  }, [controls7, inView7]);
 
   const opacityVariants = {
     moved: { opacity: 1 },
@@ -153,7 +201,7 @@ const Home: NextPage = () => {
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ duration: 2.5 }}
+            transition={{ duration: 2 }}
           >
             <Image
               src='/top1.jpg'
@@ -165,7 +213,7 @@ const Home: NextPage = () => {
             />
           </motion.div>
           <motion.div
-            className='absolute bottom-4 z-30 sm:left-10 left-5 text-white sm:min-w-max sm:block'
+            className='absolute bottom-4 z-30 sm:left-10 left-5 text-red-400 text-shadow-md sm:min-w-max sm:block'
             initial='hidden'
             animate='visible'
             variants={introVariants}
@@ -184,10 +232,10 @@ const Home: NextPage = () => {
         </div>
         <motion.div
           className='mt-16 shadow bg-white'
-          initial={{ y: -300 }}
-          animate={{ y: 0 }}
+          initial={{ y: -300, opacity: 0 }}
+          animate={{ y: [-300, 0, 0], opacity: 1 }}
           // variants={variants}
-          transition={{ duration: 1 }}
+          transition={{ duration: 2, times: [0, 0.5, 1] }}
         >
           <div className='sm:py-4 py-3 sm:text-xl text-center border-b'>ー　新着情報　ー</div>
           <div className=''>
@@ -249,7 +297,7 @@ const Home: NextPage = () => {
               </div>
               <div className='sm:mt-28 sm:h-24 sm:flex w-1/2 m-auto'>
                 <Link href='/'>
-                  <a className='bg-red-400 text-white block mx-auto py-3 px-6 rounded-full shadow sm:hover:bg-white sm:hover:text-blue-300 sm:duration-700 w-44'>
+                  <a className='bg-red-400 text-white block mx-auto py-3 px-6 rounded-full shadow sm:hover:bg-white sm:hover:text-blue-300 sm:duration-700 w-auto'>
                     今までの活動を見る
                   </a>
                 </Link>
@@ -276,11 +324,16 @@ const Home: NextPage = () => {
               以下のような活動を日々行っております
             </p>
           </div>
-          <div className='sm:mt-8 p-6 sm:pb-4 mx-auto'>
+          <div className='sm:mt-8 px-6 pt-6 sm:pb-4 mx-auto'>
             {itemList.map((item: any, index: number) => (
-              <div
+              <motion.div
                 key={item.title}
                 className='bg-lime-100 sm:mt-16 p-4 w-fit mx-auto shadow-beta mb-6'
+                ref={item.ref}
+                initial='hidden'
+                animate={item.control}
+                variants={opacityVariants}
+                transition={{ duration: 1 }}
               >
                 <div className='flex '>
                   {index % 2 !== 0 && (
@@ -305,7 +358,7 @@ const Home: NextPage = () => {
                 <p key={item.content} className='sm:text-xl m-auto mt-4 text-left'>
                   {item.content}
                 </p>
-              </div>
+              </motion.div>
             ))}
           </div>
         </motion.div>
@@ -366,7 +419,7 @@ const Home: NextPage = () => {
           <div className='sm:mt-28 sm:h-24 sm:flex w-1/2 m-auto'>
             <Link href='/'>
               <a className='bg-red-400 text-white block mx-auto py-3 px-6 rounded-full shadow sm:hover:bg-white sm:hover:text-blue-300 sm:duration-700 w-44'>
-                過去の活動一覧
+                今までの活動を見る
               </a>
             </Link>
           </div>
@@ -383,7 +436,7 @@ const Home: NextPage = () => {
             <p className='sm:text-2xl'>最後に</p>
             <p className='sm:text-5xl text-xl font-bold sm:pb-8 pb-2'>「３年間で金賞を獲得する」</p>
           </div>
-          <div className='w-4/5 m-auto'>
+          <div className='w-11/12 m-auto'>
             <p className='sm:text-xl sm:leading-8'>
               私たちは上記の目標に向けて日々活動を続けており、そのための通過点が銅賞、銀賞です。
               <br />
