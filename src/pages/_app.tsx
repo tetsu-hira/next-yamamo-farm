@@ -7,7 +7,7 @@ import { AnimatePresence } from 'framer-motion';
 import type { AppProps } from 'next/app';
 import Layout from '../components/layout';
 // import 'swiper/css/bundle';
-import 'swiper/swiper-bundle.min.css';
+// import 'swiper/swiper-bundle.min.css';
 
 function MyApp({ Component, pageProps, router }: AppProps) {
   return (

@@ -8,6 +8,7 @@ import { useInView } from 'react-intersection-observer';
 import SwiperCore, { Pagination, Navigation, EffectCube, EffectCoverflow } from 'swiper'; //使いたい機能をインポート
 // eslint-disable-next-line import/no-unresolved
 import { Swiper, SwiperSlide } from 'swiper/react'; //カルーセル用のタグをインポート
+import 'swiper/css/bundle';
 
 // import required modules
 
