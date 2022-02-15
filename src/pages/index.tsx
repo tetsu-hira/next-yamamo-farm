@@ -286,7 +286,7 @@ const Home: NextPage = () => {
               </Link>
             </div>
             <div className='flex m-auto justify-center'>
-              <div className='w-1/2'>
+              <div className='w-auto'>
                 <p className='sm:text-2xl sm:leading-8'>
                   ２年前より活動を開始
                   <br />
@@ -295,7 +295,7 @@ const Home: NextPage = () => {
                   今年３月に銅賞を獲得
                 </p>
               </div>
-              <div className='sm:mt-28 sm:h-24 sm:flex w-auto m-auto'>
+              <div className='sm:mt-28 sm:h-24 sm:flex w-auto my-auto ml-2'>
                 <Link href='/'>
                   <a className='bg-red-400 text-white block mx-auto py-3 px-6 rounded-full shadow sm:hover:bg-white sm:hover:text-blue-300 sm:duration-700 w-auto min-w-full'>
                     今までの活動を見る
