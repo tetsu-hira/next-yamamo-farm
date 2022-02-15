@@ -7,7 +7,7 @@ export default function Footer() {
   const policyList: string[] = ['特定商取引法に関する表示', 'プライバシーポリシー', '利用規約'];
 
   return (
-    <div className='bg-green-100'>
+    <div className='bg-green-200'>
       <footer className='py-4 sm:py-20 mx-auto text-slate-800 w-auto font-body bg-white'>
         <div className='sm:flex m-auto'>
           <div className='sm:w-1/4 m-auto pl-10 sm:block sm:min-w-max flex'>

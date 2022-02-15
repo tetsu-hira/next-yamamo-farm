@@ -196,7 +196,7 @@ const Home: NextPage = () => {
         />
       </Head>
 
-      <main className='bg-green-100 pb-16'>
+      <main className='bg-green-200 pb-16'>
         <div className='relative'>
           <motion.div
             initial={{ opacity: 0 }}
@@ -376,9 +376,9 @@ const Home: NextPage = () => {
           </div>
           <div>
             <p className='sm:text-xl sm:leading-8'>
-              生産管理グループは今まで5S活動を行ってこなかったため、
+              生産管理の活動が始まったのは２年前であり
               <br />
-              昨年度より長期的な最終目標として
+              活動当初から長期的な最終目標として
               <br />
               金賞の獲得を掲げて日々の活動を続けております。
             </p>
