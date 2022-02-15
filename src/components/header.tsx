@@ -2,6 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
 import Hamburger from './hamburger';
+// import Search from './search';
 
 export default function Header() {
   return (
@@ -11,6 +12,7 @@ export default function Header() {
           <Link href='/'>
             <a className='sm:text-5xl sm:font-bold leading-loose text-2xl'>5S活動の記録</a>
           </Link>
+          {/* <Search /> */}
         </div>
         <ul className='basis-1/3 justify-center m-auto sm:flex sm:min-w-max hidden'>
           <li className='px-2 list-none'>

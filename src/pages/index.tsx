@@ -36,7 +36,7 @@ type Pros = {
 
 const Home: NextPage = () => {
   const introList: string[] = [
-    '【生産管理グループの5S活動】',
+    '「生産管理グループの5S活動」',
     '　日々の5S活動や年に一度のPC掃除など',
     '　金賞の獲得を目指して日々奮闘中です！',
   ];
@@ -213,7 +213,7 @@ const Home: NextPage = () => {
             />
           </motion.div>
           <motion.div
-            className='absolute bottom-4 z-30 sm:left-10 left-3 text-red-400 text-shadow-lg sm:min-w-max sm:block'
+            className='absolute bottom-4 z-30 sm:left-10 left-3 text-white text-shadow-lg sm:min-w-max sm:block'
             initial='hidden'
             animate='visible'
             variants={introVariants}
