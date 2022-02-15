@@ -36,9 +36,9 @@ type Pros = {
 
 const Home: NextPage = () => {
   const introList: string[] = [
-    '【生産管理の5S活動】',
+    '【生産管理グループの5S活動】',
     '　日々の5S活動や年に一度のPC掃除など',
-    '　金賞の獲得を目指して続けております',
+    '　金賞の獲得を目指して日々奮闘中です！',
   ];
   const introVariants = {
     visible: { opacity: 1, x: 0 },
@@ -201,7 +201,7 @@ const Home: NextPage = () => {
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ duration: 2 }}
+            transition={{ duration: 3 }}
           >
             <Image
               src='/top1.jpg'
@@ -213,7 +213,7 @@ const Home: NextPage = () => {
             />
           </motion.div>
           <motion.div
-            className='absolute bottom-4 z-30 sm:left-10 left-3 text-red-400 text-shadow-md sm:min-w-max sm:block'
+            className='absolute bottom-4 z-30 sm:left-10 left-3 text-red-400 text-shadow-lg sm:min-w-max sm:block'
             initial='hidden'
             animate='visible'
             variants={introVariants}
@@ -223,7 +223,7 @@ const Home: NextPage = () => {
                 className='font-bold text-xl sm:text-5xl leading-relaxed'
                 key={index}
                 variants={introVariants}
-                transition={{ duration: 1, delay: index * 0.5 + 1 }}
+                transition={{ duration: 1.5, delay: index * 1 + 1 }}
               >
                 {intro}
               </motion.p>
@@ -231,11 +231,11 @@ const Home: NextPage = () => {
           </motion.div>
         </div>
         <motion.div
-          className='mt-16 shadow bg-white'
+          className='mt-14 shadow bg-white'
           initial={{ y: -300, opacity: 0 }}
           animate={{ y: [-300, 0, 0], opacity: 1 }}
           // variants={variants}
-          transition={{ duration: 2, times: [0, 0.5, 1] }}
+          transition={{ duration: 3, times: [0, 0.5, 1] }}
         >
           <div className='sm:py-4 py-3 sm:text-xl text-center border-b'>ー　新着情報　ー</div>
           <div className=''>
