@@ -15,11 +15,6 @@ const firebaseConfig = {
 };
 
 const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
-const auth = getAuth(app);
-onAuthStateChanged(auth, (user) => {
-  /* check status */
-});
 
 // データベースからcitiesというリストを取得する場合の例
 async function getCities(db: any) {
@@ -28,3 +23,5 @@ async function getCities(db: any) {
   const cityList = citySnapshot.docs.map((doc) => doc.data());
   return cityList;
 }
+
+export default firebase;

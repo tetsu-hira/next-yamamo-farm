@@ -240,7 +240,7 @@ const Home: NextPage = () => {
           <div className='sm:py-4 py-3 sm:text-xl text-center border-b'>ー　新着情報　ー</div>
           <div className=''>
             {infoList.map((info: any, index: number) => (
-              <Link href='/' key={index}>
+              <Link href='/test' key={index}>
                 <a className='flex w-full justify-between border-b'>
                   <div className='pb-2 pt-3 pl-6 w-full'>
                     <div className='text-xs leading-none'>{info.title}</div>
