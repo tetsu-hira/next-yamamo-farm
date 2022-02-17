@@ -1,5 +1,7 @@
 import { getApp, FirebaseApp } from 'firebase/app';
 import type { NextPage } from 'next';
+import AddBook from '../components/AddBook';
+import { BookTable } from '../components/BookTable';
 import { SignInForm } from '../components/SignInForm';
 import { SignInOrOutButton } from '../components/SignInOrOutButton';
 
@@ -17,6 +19,8 @@ const Test: NextPage = () => {
       <div className='mt-4 text-xl'>サインイン画面</div>
       <SignInForm />
       <SignInOrOutButton />
+      <BookTable />
+      <AddBook />
     </>
   );
 };

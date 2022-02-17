@@ -9,8 +9,22 @@ export const SignInOrOutButton: FC = () => {
   const { isSignedIn } = useAuthState();
 
   if (isSignedIn) {
-    return <button onClick={() => signOut(getAuth())}>Sign-out</button>;
+    return (
+      <button
+        onClick={() => signOut(getAuth())}
+        className='bg-red-400 m-4 px-6 py-2 text-white rounded-full'
+      >
+        サインアウト
+      </button>
+    );
   } else {
-    return <button onClick={() => Router.push('/test')}>Sign-in</button>;
+    return (
+      <button
+        onClick={() => Router.push('/test')}
+        className='bg-red-400 m-4 px-6 py-2 text-white rounded-full'
+      >
+        サインイン
+      </button>
+    );
   }
 };
