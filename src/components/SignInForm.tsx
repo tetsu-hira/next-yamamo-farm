@@ -4,9 +4,6 @@ import {
   FacebookAuthProvider,
   GoogleAuthProvider,
   TwitterAuthProvider,
-  // FacebookAuthProvider,
-  // GoogleAuthProvider,
-  // TwitterAuthProvider,
 } from 'firebase/auth';
 import { auth } from 'firebaseui';
 import { FC } from 'react';
@@ -18,9 +15,9 @@ const uiConfig: auth.Config = {
   signInFlow: 'popup',
   signInOptions: [
     EmailAuthProvider.PROVIDER_ID,
-    // FacebookAuthProvider.PROVIDER_ID,
-    // GoogleAuthProvider.PROVIDER_ID,
-    // TwitterAuthProvider.PROVIDER_ID,
+    FacebookAuthProvider.PROVIDER_ID,
+    GoogleAuthProvider.PROVIDER_ID,
+    TwitterAuthProvider.PROVIDER_ID,
   ],
   signInSuccessUrl: '/',
 };
