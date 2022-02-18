@@ -16,7 +16,7 @@ export default function Search({ menuData = [] }) {
 
         <div className='relative'>
           <input
-            ref={register()}
+            // ref={register()}
             id='search'
             name='search'
             type='text'
