@@ -5,13 +5,13 @@ import { getFirestore, collection, getDocs } from 'firebase/firestore/lite';
 import 'firebase/database';
 
 const firebaseConfig = {
-  apiKey: 'AIzaSyAWnPhwX0_nJmKzGnJf8nS4w0_hr6mv59A',
-  authDomain: 'next-yamamo-farm.firebaseapp.com',
-  projectId: 'next-yamamo-farm',
-  storageBucket: 'next-yamamo-farm.appspot.com',
-  messagingSenderId: '438980695718',
-  appId: '1:438980695718:web:61ee281ed1e9fe671b4667',
-  measurementId: 'G-XRLPYS1FY0',
+  apiKey: 'AIzaSyAKhA0qkRQurrXkP3tQuAgarrUdlobBjdA',
+  authDomain: 'yamamo-farm.firebaseapp.com',
+  projectId: 'yamamo-farm',
+  storageBucket: 'yamamo-farm.appspot.com',
+  messagingSenderId: '822208837852',
+  appId: '1:822208837852:web:1456af27fc9a4a795ddc19',
+  measurementId: 'G-8261744QYG',
 };
 
 const app = initializeApp(firebaseConfig);

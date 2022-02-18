@@ -1,4 +1,5 @@
-import { collection, getDoc, getDocs, getFirestore } from 'firebase/firestore/lite';
+import { collection, doc, getDocs, getFirestore, setDoc } from 'firebase/firestore';
+import { getDoc } from 'firebase/firestore/lite';
 
 import './init'; // Initialize FirebaseApp
 
@@ -20,4 +21,14 @@ export async function getBooks(): Promise<Book[]> {
   });
 
   return books;
+}
+
+export async function addBook(book: Book): Promise<void> {
+  const db = getFirestore();
+  const docRef = doc(db, 'books', book.id);
+  await setDoc(
+    docRef,
+    { title: book.title, author: book.author, price: book.price },
+    // { merge: true /* ドキュメントが存在する場合はフィールドを追記 */ },
+  );
 }
