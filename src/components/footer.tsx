@@ -8,37 +8,43 @@ export default function Footer() {
 
   return (
     <div className='bg-green-200'>
-      <footer className='py-4 sm:py-20 mx-auto text-slate-800 w-auto font-body bg-white'>
+      <footer className='py-4 sm:py-10 mx-auto text-slate-800 w-auto font-body bg-white'>
         <div className='sm:flex m-auto'>
-          <div className='sm:w-1/4 m-auto pl-10 sm:block sm:min-w-max flex'>
+          <div className='sm:w-2/5 m-auto pl-10 sm:min-w-max flex sm:block'>
             <Link href='/'>
               <a className='sm:text-4xl text-xl font-bold'>5S活動の記録</a>
             </Link>
-            <ul className='flex pl-0 sm:pt-8 justify-start m-auto sm:basis-1/4 py-1'>
+            <ul className='flex pl-0 sm:pt-8 justify-start m-auto py-1 sm:hidden'>
               <li className='px-2 list-none'>
                 <Link href='/'>
-                  <a className='text-16 font-bold'>
+                  <a className='font-bold'>
                     <Image src='/Facebook.png' width={16} height={16} alt='Facebookイメージ' />
                   </a>
                 </Link>
               </li>
               <li className='px-2 list-none'>
                 <Link href='/'>
-                  <a className='text-16 font-bold'>
-                    <Image src='/Twitter.png' width={16} height={16} alt='Twitterイメージ' />
+                  <a className='font-bold'>
+                    <Image
+                      src='/Twitter.png'
+                      width={16}
+                      height={16}
+                      alt='Twitterイメージ'
+                      layout={'intrinsic'}
+                    />
                   </a>
                 </Link>
               </li>
               <li className='px-2 list-none'>
                 <Link href='/'>
-                  <a className='text-16 font-bold'>
+                  <a className='font-bold'>
                     <Image src='/Instagram.png' width={16} height={16} alt='Instagramイメージ' />
                   </a>
                 </Link>
               </li>
             </ul>
           </div>
-          <div className='flex flex-wrap'>
+          <div className='flex flex-wrap sm:w-3/5 sm:min-w-max'>
             <div className='pl-6 sm:w-1/4 mt-4 sm:mt-0 mx-4 mb-auto'>
               <p className='font-bold sm:text-xl mb-0'>リンク</p>
               <ul className='sm:my-5 pl-0 w-auto'>
@@ -52,10 +58,10 @@ export default function Footer() {
             <div className='pl-6 sm:w-1/4 mt-4 sm:mt-0 mx-4 mb-auto'>
               <p className='font-bold sm:text-xl mb-0'>課題を見る</p>
               <ul className='mt-0.5 mb-5 pl-0 flex w-auto flex-wrap'>
-                <li className='my-2 font-light list-none sm:w-1/2 text-base pl-4'>コレクション</li>
+                <li className='my-2 font-light list-none text-base pl-4'>コレクション</li>
               </ul>
             </div>
-            <div className='pl-6 sm:w-1/4 mt-4 sm:mt-0 mx-4 mb-auto'>
+            <div className='pl-6 mt-4 sm:mt-0 mx-4 mb-auto'>
               <p className='font-bold sm:text-xl mb-0'>ポリシー</p>
               <ul className='mt-0.5 mb-5 pl-0 w-auto'>
                 {policyList.map((policy, index) => (

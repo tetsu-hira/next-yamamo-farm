@@ -61,11 +61,11 @@ const Home: NextPage = () => {
     triggerOnce: true,
   });
   const [ref3, inView3] = useInView({
-    threshold: [1],
+    threshold: [0.6],
     triggerOnce: true,
   });
   const [ref4, inView4] = useInView({
-    threshold: [0.8],
+    threshold: [0.6],
     triggerOnce: true,
   });
   const [ref5, inView5] = useInView({
@@ -220,7 +220,7 @@ const Home: NextPage = () => {
           >
             {introList.map((intro: string, index: number) => (
               <motion.p
-                className='font-bold text-xl sm:text-5xl leading-relaxed'
+                className='font-bold text-xl sm:text-5xl leading-relaxed sm:my-4'
                 key={index}
                 variants={introVariants}
                 transition={{ duration: 1.5, delay: index * 1 + 1 }}
@@ -267,40 +267,42 @@ const Home: NextPage = () => {
           variants={opacityVariants}
           transition={{ duration: 1 }}
         >
-          <div>
-            <div className='my-auto text-center sm:pl-24 sm:min-w-max sm:w-1/2'>
+          <div className=''>
+            <div className='my-auto text-center sm:min-w-max'>
               <p className='sm:text-2xl'>生産管理の</p>
               <p className='sm:text-5xl text-xl font-bold sm:pb-8 pb-2'>5S活動の歩み</p>
             </div>
-            <div className='sm:min-w-max sm:w-1/2 w-3/4 m-auto my-2'>
-              <Link href='/'>
-                <a>
-                  <Image
-                    className='w-full'
-                    src='/5Scycle.png'
-                    width={416}
-                    height={400}
-                    alt='5S活動のイメージ'
-                  />
-                </a>
-              </Link>
-            </div>
-            <div className='flex m-auto justify-center'>
-              <div className='w-auto'>
-                <p className='sm:text-2xl sm:leading-8'>
-                  ２年前より活動を開始
-                  <br />
-                  順調に活動を進め、
-                  <br />
-                  今年３月に銅賞を獲得
-                </p>
-              </div>
-              <div className='sm:mt-28 sm:h-24 sm:flex w-auto my-auto ml-2'>
+            <div className='sm:flex'>
+              <div className='sm:min-w-max sm:w-1/2 w-3/4 m-auto my-2'>
                 <Link href='/'>
-                  <a className='bg-red-400 text-white block mx-auto py-3 px-6 rounded-full shadow sm:hover:bg-white sm:hover:text-blue-300 sm:duration-700 w-auto min-w-full'>
-                    今までの活動を見る
+                  <a>
+                    <Image
+                      className='w-full'
+                      src='/5Scycle.png'
+                      width={416}
+                      height={400}
+                      alt='5S活動のイメージ'
+                    />
                   </a>
                 </Link>
+              </div>
+              <div className='flex m-auto justify-center sm:block sm:mx-8'>
+                <div className='w-auto'>
+                  <p className='sm:text-2xl sm:leading-loose'>
+                    ２年前より活動を開始
+                    <br />
+                    順調に活動を進め、
+                    <br />
+                    今年３月に銅賞を獲得
+                  </p>
+                </div>
+                <div className='sm:mt-8 sm:h-auto sm:flex w-auto my-auto ml-2'>
+                  <Link href='/'>
+                    <a className='bg-red-400 text-white block mx-auto py-3 px-6 rounded-full shadow sm:hover:bg-white sm:hover:text-red-400 sm:duration-700 w-auto min-w-full sm:border sm:border-red-400'>
+                      今までの活動を見る
+                    </a>
+                  </Link>
+                </div>
               </div>
             </div>
           </div>
@@ -313,7 +315,7 @@ const Home: NextPage = () => {
           variants={opacityVariants}
           transition={{ duration: 1 }}
         >
-          <div className='my-auto text-center sm:pl-24 sm:min-w-max sm:w-1/2'>
+          <div className='my-auto text-center sm:min-w-max'>
             <p className='sm:text-2xl'>今年度目標</p>
             <p className='sm:text-5xl text-xl font-bold sm:pb-8 pb-2'>銀賞の獲得</p>
           </div>
@@ -324,24 +326,35 @@ const Home: NextPage = () => {
               以下のような活動を日々行っております
             </p>
           </div>
-          <div className='sm:mt-8 px-6 pt-6 sm:pb-4 mx-auto'>
+          <div className='px-6 pt-6 sm:pb-4 mx-auto'>
             {itemList.map((item: any, index: number) => (
               <motion.div
                 key={item.title}
-                className='bg-lime-100 sm:mt-16 p-4 w-fit mx-auto shadow-beta mb-6'
+                className='bg-lime-100 sm:mt-8 p-4 w-fit mx-auto shadow-beta mb-6 sm:w-fit sm:m-auto'
                 ref={item.ref}
                 initial='hidden'
                 animate={item.control}
                 variants={opacityVariants}
                 transition={{ duration: 1 }}
               >
-                <div className='flex '>
+                <div className='flex'>
                   {index % 2 !== 0 && (
-                    <p key={item.title} className='sm:text-3xl font-bold text-xl m-auto pr-4 w-60'>
-                      {item.title}
-                    </p>
+                    <div className='m-auto pr-4 w-60 sm:w-80 sm:m-4'>
+                      <p
+                        key={item.title}
+                        className='sm:text-3xl font-bold text-xl sm:h-3/5 sm:flex sm:justify-center sm:items-center'
+                      >
+                        {item.title}
+                      </p>
+                      <p
+                        key={item.content}
+                        className='sm:text-xl m-auto mt-4 text-left sm:block hidden'
+                      >
+                        {item.content}
+                      </p>
+                    </div>
                   )}
-                  <div className='sm:min-w-max w-full'>
+                  <div className='sm:min-w-max w-full sm:hidden'>
                     <Image
                       src={'/main' + (index + 1) + '.jpg'}
                       width={270}
@@ -349,13 +362,32 @@ const Home: NextPage = () => {
                       alt='メイン画像1'
                     />
                   </div>
+                  <div className='sm:min-w-max sm:w-auto hidden sm:block'>
+                    <Image
+                      src={'/main' + (index + 1) + '.jpg'}
+                      width={600}
+                      height={400}
+                      alt='メイン画像1'
+                    />
+                  </div>
                   {index % 2 === 0 && (
-                    <p key={item.title} className='sm:text-3xl font-bold text-xl m-auto pl-4 w-60'>
-                      {item.title}
-                    </p>
+                    <div className='m-auto pl-4 w-60 sm:w-80 sm:m-4'>
+                      <p
+                        key={item.title}
+                        className='sm:text-3xl font-bold text-xl sm:h-3/5 sm:flex sm:justify-center sm:items-center'
+                      >
+                        {item.title}
+                      </p>
+                      <p
+                        key={item.content}
+                        className='sm:text-xl m-auto mt-4 text-left sm:block hidden'
+                      >
+                        {item.content}
+                      </p>
+                    </div>
                   )}
                 </div>
-                <p key={item.content} className='sm:text-xl m-auto mt-4 text-left'>
+                <p key={item.content} className='sm:text-xl m-auto mt-4 text-left sm:hidden'>
                   {item.content}
                 </p>
               </motion.div>
@@ -363,14 +395,14 @@ const Home: NextPage = () => {
           </div>
         </motion.div>
         <motion.div
-          className='mt-16 py-4 text-center mb-8 sm:min-w-max bg-white shadow'
+          className='mt-16 py-4 text-center mb-8 bg-white shadow sm:w-auto'
           ref={ref3}
           initial='hidden'
           animate={controls3}
           variants={opacityVariants}
           transition={{ duration: 1 }}
         >
-          <div className='my-auto text-center sm:pl-24 sm:min-w-max sm:w-1/2'>
+          <div className='my-auto text-center'>
             <p className='sm:text-2xl'>最終目標となる</p>
             <p className='sm:text-5xl text-xl font-bold sm:pb-8 pb-2'>金賞までの道のり</p>
           </div>
@@ -383,7 +415,7 @@ const Home: NextPage = () => {
               金賞の獲得を掲げて日々の活動を続けております。
             </p>
           </div>
-          <div className='w-11/12 m-auto mt-4 mb-8'>
+          <div className='w-11/12 m-auto mt-4 mb-8 sm:mt-16'>
             <Swiper
               effect={'coverflow'}
               grabCursor={true}
@@ -416,23 +448,23 @@ const Home: NextPage = () => {
               })}
             </Swiper>
           </div>
-          <div className='sm:mt-28 sm:h-24 sm:flex w-1/2 m-auto'>
+          <div className='sm:mb-8 sm:mt-12  sm:flex w-1/2 m-auto'>
             <Link href='/'>
-              <a className='bg-red-400 text-white block mx-auto py-3 px-6 rounded-full shadow sm:hover:bg-white sm:hover:text-blue-300 sm:duration-700 w-auto min-w-full'>
+              <a className='bg-red-400 text-white block mx-auto py-3 px-6 rounded-full shadow sm:hover:bg-white sm:hover:text-red-400 sm:duration-700 w-auto min-w-full sm:border sm:border-red-400 sm:w-sull sm:min-w-fit'>
                 今までの活動を見る
               </a>
             </Link>
           </div>
         </motion.div>
         <motion.div
-          className='mt-16 text-center sm:min-w-max bg-white shadow py-4'
+          className='mt-16 text-center bg-white shadow py-4'
           ref={ref4}
           initial='hidden'
           animate={controls4}
           variants={opacityVariants}
           transition={{ duration: 1 }}
         >
-          <div className='my-auto text-center sm:pl-24 sm:min-w-max sm:w-1/2'>
+          <div className='my-auto text-center'>
             <p className='sm:text-2xl'>最後に</p>
             <p className='sm:text-5xl text-xl font-bold sm:pb-8 pb-2'>「３年間で金賞を獲得する」</p>
           </div>
