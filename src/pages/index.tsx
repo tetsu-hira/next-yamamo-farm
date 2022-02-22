@@ -196,7 +196,7 @@ const Home: NextPage = () => {
         />
       </Head>
 
-      <main className='bg-green-200 pb-16'>
+      <main className='bg-green-300 pb-16'>
         <div className='relative'>
           <motion.div
             initial={{ opacity: 0 }}

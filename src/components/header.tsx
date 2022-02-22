@@ -1,9 +1,9 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
-import Cart from '../pages/cart';
 import Hamburger from './hamburger';
 // import Search from './search';
+import Login from './login';
 
 export default function Header() {
   return (
@@ -55,18 +55,18 @@ export default function Header() {
             </Link>
           </li>
         </ul>
-        <ul className='flex absolute right-1 top-2.5 sm:min-w-max sm:hidden'>
-          <li className='px-1 block'>
+        <ul className='flex absolute right-1 top-1 sm:min-w-max sm:hidden'>
+          {/* <li className='px-1 block'>
             <Link href='/signin'>
               <a>
                 <Image src='/user.svg' width={28} height={28} alt='userイメージ' />
               </a>
             </Link>
-          </li>
+          </li> */}
           <li className='px-1 block'>
             <Link href='/cart'>
               <a>
-                <Image src='/cart.svg' width={28} height={28} alt='cartイメージ' />
+                <Image src='/bag.svg' width={40} height={40} alt='cartイメージ' />
               </a>
             </Link>
           </li>

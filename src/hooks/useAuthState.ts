@@ -27,7 +27,7 @@ const INITIAL_AUTH_STATE: AuthState = {
 };
 
 /**
- * ユーザーのサインイン状態を取得するためのカスタムフック。
+ * ユーザーのサインイン状態を取得するためのカスタムフックです。
  */
 export function useAuthState(): AuthState {
   const [authState, setAuthState] = useState(INITIAL_AUTH_STATE);
